@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 def sol(k, list_n, list_m, left, right):
     mid = (left + right) // 2
     if right < left:
@@ -26,7 +25,7 @@ for k in range(0, m):
     ans[k] = right_idx - left_idx - 1
     print(ans)
 print(*ans)
-=======
+
 def sol(s, k):
     ans = [0] * len(k)
     for i in s:
@@ -42,4 +41,3 @@ m = int(input())
 k = input().split()
 
 print(sol(s, k))
->>>>>>> eb4f3e84fbbd6ea31681eae7717ac3c70525a1e8
