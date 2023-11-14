@@ -3,6 +3,5 @@ def sol(n):
         print((n - i) * " ",end ="")
         print(i * "*")
 
-# n = map(int, input().split())
 n = int(input())
 sol(n)
