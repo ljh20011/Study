@@ -3,7 +3,7 @@ def sol(n, member):
     if n == 1:
         return 1
     else:
-        
+        pass
 
     return
 
