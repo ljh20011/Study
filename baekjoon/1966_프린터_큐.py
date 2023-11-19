@@ -15,19 +15,32 @@ class Queue():
         return self.queue.pop(0)
 
     def top(self):
-        return self.queue.sort(reverse=True)[0]
+        return self.queue[0]
 
-def sol(queue):
+def sol(doc, k):
+    queue = Queue(doc)
+    queue_sort = doc.copy()
+    queue_sort.sort()
+    chk = [0] * len(doc)
+    chk[k] = 1
+    cnt = 0
+    while(queue.size()):
 
-    return
+        if queue.top() == queue_sort[-1]: #우선 순위 같은 경우
+            if chk[0] == 1:
+                return cnt + 1
+            queue.pop()
+            queue_sort.pop()
+            chk.pop(0)
+            cnt += 1
+        else: # 다른 경우
+            queue.push(queue.pop())
+            chk.append(chk.pop(0))
+
 
 n = int(input())
 
 for i in range(n):
     info = list(map(int, input().split()))
-    doc = []
-    for j in range(info):
-        doc.append(int(input))
-    queue = Queue(doc)
-    sol(queue)
-
+    doc = list(map(int, input().split()))
+    print(sol(doc, info[1]))

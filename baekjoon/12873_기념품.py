@@ -1,12 +1,12 @@
 def sol(n, member):
-    member[0] = 1
-    if n == 1:
-        return 1
-    else:
-        pass
-
+    cnt = 1
+    idx = 0
+    while len(member) > 1:
+        idx = ((idx-1) +(cnt**3) )% len(member)# 날릴 원소, 다음번에 시작할 원소
+        member.pop(idx)
+        cnt += 1
+    print(*member)
     return
-
 n = int(input())
-member = [0] * n
-print(member)
+member = list(range(1,n+1))
+sol(n, member)

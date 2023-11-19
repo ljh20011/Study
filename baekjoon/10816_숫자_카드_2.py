@@ -1,43 +1,32 @@
-def sol(k, list_n, list_m, left, right):
+def lower_bound(k, list_n, list_m, left, right):
     mid = (left + right) // 2
     if right < left:
-        return 0
-    if list_n[mid] == k:
-        return mid
+        return int(mid)
+    if list_n[mid] >= k:
+        right = mid - 1
+        return lower_bound(k, list_n, list_m, left, right)
+    else :
+        left = mid + 1
+        return lower_bound(k, list_n, list_m, left, right)
+def upper_bound(k, list_n, list_m, left, right):
+    mid = (left + right) // 2
+    if right < left:
+        return int(mid)
     if list_n[mid] > k:
         right = mid - 1
-        return sol(k, list_n, list_m, left, right)
-    if list_n[mid] < k :
+        return upper_bound(k, list_n, list_m, left, right)
+    else:
         left = mid + 1
-        return sol(k, list_n, list_m, left, right)
+        return upper_bound(k, list_n, list_m, left, right)
 
 n = int(input())
-list_n = list(map(int, input().split()))
-list_n.sort()
+s = list(map(int, input().split()))
+s.sort()
 
 m = int(input())
-list_m = list(map(int, input().split()))
-ans = [0] * m
-for k in range(0, m):
-    left_idx = (sol(list_m[k] - 1, list_n, list_m, 0, n-1))
-    right_idx = (sol(list_m[k] + 1, list_n, list_m, 0, n-1))
+k = list(map(int, input().split()))
 
-    ans[k] = right_idx - left_idx - 1
-    print(ans)
+ans = []
+for i in k:
+    ans.append(upper_bound(i, s, k, 0, n-1) - lower_bound(i, s, k, 0, n-1))
 print(*ans)
-
-def sol(s, k):
-    ans = [0] * len(k)
-    for i in s:
-        for j in range(len(k)):
-            if i == k[j]:
-                ans[j] += 1
-    return ans
-
-n = int(input())
-s = input().split()
-
-m = int(input())
-k = input().split()
-
-print(sol(s, k))
